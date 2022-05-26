@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        .btn {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="question">Quiz</h1>
+
+    <button class="btn" onclick="prevQuestion()">Previous</button>
+
+    <input type="radio" name="choices" id="choice0" data-id="0">
+    <label for="choice0" id="choiceText0"></label>
+
+    <input type="radio" name="choices" id="choice1" data-id="1">
+    <label for="choice1" id="choiceText1"></label>
+
+    <input type="radio" name="choices" id="choice2" data-id="2">
+    <label for="choice2" id="choiceText2"></label>
+
+    <input type="radio" name="choices" id="choice3" data-id="3">
+    <label for="choice3" id="choiceText3"></label>
+
+    <button class="btn" onclick="nextQuestion()">Next</button>
+
+    <script>
+        // ===============DATA===============
+        // ==================================
+        const DB_QUiZ = [
+            {
+                question: "Bagaimana Kabarmu hari ini?",
+                answers: ['Sangat baik','baik','kurang baik', 'tidak baik']
+            },
+            {
+                question: "Libur ngapain aja?",
+                answers: ['belajar','main','nonton', 'rebahan']
+            },
+            {
+                question: "Perempuan jadi programmer?",
+                answers: ['Luar biasa','biasa aja','emang bisa', 'mungkin']
+            }
+        ]
+
+        const CORRECT_ANSWER = [0,0,0]
+        
+        // ===============Question Setup===============
+        // ==================================
+
+        current_question = 0
+
+        document.addEventListener("DOMContentLoaded", function(event){
+            setupQuestion()
+        });
+
+        function setupQuestion() {
+            document.getElementById('question').innerText = DB_QUiZ[current_question]['question']
+            document.getElementById('choiceText0').innerText = DB_QUiZ[current_question]['answers'][0]
+            document.getElementById('choiceText1').innerText = DB_QUiZ[current_question]['answers'][1]
+            document.getElementById('choiceText2').innerText = DB_QUiZ[current_question]['answers'][2]
+            document.getElementById('choiceText3').innerText = DB_QUiZ[current_question]['answers'][3]
+        }
+
+        function prevQuestion() {
+            current_question--
+            setupQuestion()
+        }
+        function nextQuestion() {
+            current_question++
+
+            if (current_question > DB_QUiZ.length -1){
+                alert('selesai')
+            }
+
+            setupQuestion()
+        }
+
+        function stopQuiz() {
+            alert("selesai")
+        }
+
+    </script>
+
+</body>
+</html>
