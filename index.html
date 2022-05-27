@@ -1,35 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Quiz App</title>
     <style>
-        .btn {
-            background-color: aquamarine;
+        .hidden {
+            display: none;
+        }
+        input[type="radio"]{
+            display: none;
+        }
+        input[type="radio"]:checked+label{
+            text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
-    <h1 id="question">Quiz</h1>
+    <section class="hero is-danger is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered" id="opening_window">
+                <p class="title has-text-centered">
+                    Selamat Bermain...
+                </p>
+                <br>
+                    <button class="button is-light is-rounded" onclick="startQuiz()">Play</button>
+            </div>
+            <div id="quiz_window" class="container has-text-centered hidden">
+                <h1 id="question" class="is-size-1 has-text-centered"></h1>
+                <br><br><br>
 
+                <div class="columns is-half">
+                    <div class="column">
+                        <input type="radio" name="choices" id="choice0" data-id="0">
+                        <label class="button is-light" for="choice0" id="choiceText0"></label>
 
-    <input type="radio" name="choices" id="choice0" data-id="0">
-    <label for="choice0" id="choiceText0"></label>
+                    </div>
+                    <div class="column">
+                        <input type="radio" name="choices" id="choice1" data-id="1">
+                        <label class="button is-light" for="choice1"
+                            id="choiceText1"></label>
+                    </div>
+                </div>
+                <div class="columns is-half">
+                    <div class="column">
+                        <input type="radio" name="choices" id="choice2" data-id="2">
+                        <label class="button is-light" for="choice2" id="choiceText2"></label>
 
-    <input type="radio" name="choices" id="choice1" data-id="1">
-    <label for="choice1" id="choiceText1"></label>
+                    </div>
+                    <div class="column">
+                        <input type="radio" name="choices" id="choice3" data-id="3">
+                        <label class="button is-light" for="choice3"
+                            id="choiceText3"></label>
+                    </div>
+                    
+                </div>
+                    <button class="button is-light is-rounded" onclick="nextQuestion()">Next</button>
 
-    <input type="radio" name="choices" id="choice2" data-id="2">
-    <label for="choice2" id="choiceText2"></label>
-
-    <input type="radio" name="choices" id="choice3" data-id="3">
-    <label for="choice3" id="choiceText3"></label>
-
-    <button class="btn" onclick="nextQuestion()">Next</button>
+                
+            </div>
+            <div id="closing_window" class="container has-text-centered hidden">
+                <h1 class="title is-1">Quis Selesai</h1>
+                <h2 id="score" class="title is-2"></h2>
+            </div>
+        </div>
+    </section>
 
     <script src="script.js"></script>
-
 </body>
+
 </html>

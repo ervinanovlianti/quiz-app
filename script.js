@@ -42,15 +42,18 @@ function nextQuestion() {
 
     saveAnswer()
 
-    if (current_question > DB_QUiZ.length - 1)
+    if (current_question > DB_QUiZ.length - 1){
         stopQuiz()
-
+    }
+    resetState()
     setupQuestion()
 }
 
 function stopQuiz() {
     checkScore()
-    alert("selesai, total score kamu" + total_score)
+    document.getElementById('quiz_window').style.display = "none"
+    document.getElementById('closing_window').style.display = "block"
+    document.getElementById('score').innerText = "Score Kamu " + total_score
     return
 }
 
@@ -58,14 +61,25 @@ function saveAnswer(){
     const answer = document.querySelector('input[name="choices"]:checked');
     if (answer != null) {
         saved_answer.push(parseInt(answer.getAttribute('data-id')))
-    console.log(saved_answer)
+    }else{
+        // default answer ketika user tidak memilih jawaban
+        saved_answer.push(0)
     }
 }
 function checkScore(){
     for (i = 0; i < saved_answer.length; i++) {
-        if (saved_answer[i] == CORRECT_ANSWER) {
+        if (saved_answer[i] == CORRECT_ANSWER[i]) {
             total_score += 100
         }
-        
     }
+}
+function resetState() {
+    const chooseAnswer = document.querySelector('input[name="choices"]:checked')
+    if (chooseAnswer != null) {
+        chooseAnswer.checked = false
+    }
+}
+function startQuiz() {
+    document.getElementById('opening_window').style.display = "none"
+    document.getElementById('quiz_window').style.display = "block"
 }
